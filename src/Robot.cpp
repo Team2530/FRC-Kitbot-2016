@@ -4,19 +4,20 @@ class Robot: public IterativeRobot
 {
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
-	//SendableChooser *chooser;
+	SendableChooser *chooser;
 	Victor *victor1;
 	Victor *victor2;
 	Victor *victor3;
 	Victor *victor4;
 	Joystick *arcadeStick;
 	RobotDrive *myRobot;
+	Timer *timer;
 
 
 
-	/*const std::string autoNameDefault = "Default";
+	const std::string autoNameDefault = "Default";
 	const std::string autoNameCustom = "My Auto";
-	std::string autoSelected;*/
+	std::string autoSelected;
 
 	void RobotInit()
 	{
@@ -26,10 +27,11 @@ private:
 		victor4= new Victor(3);
 		myRobot= new RobotDrive(victor1, victor2, victor3, victor4);
 		arcadeStick= new Joystick(0);
-		/*chooser = new SendableChooser();
+		chooser = new SendableChooser();
 		chooser->AddDefault(autoNameDefault, (void*)&autoNameDefault);
 		chooser->AddObject(autoNameCustom, (void*)&autoNameCustom);
-		SmartDashboard::PutData("Auto Modes", chooser);*/
+		SmartDashboard::PutData("Auto Modes", chooser);
+
 	}
 
 
@@ -44,24 +46,34 @@ private:
 	 */
 	void AutonomousInit()
 	{
-		/*autoSelected = *((std::string*)chooser->GetSelected());
-		//std::string autoSelected = SmartDashboard::GetString("Auto Selector", autoNameDefault);
+		autoSelected = *((std::string*)chooser->GetSelected());
+		std::string autoSelected = SmartDashboard::GetString("Auto Selector", autoNameDefault);
 		std::cout << "Auto selected: " << autoSelected << std::endl;
 
+		timer= new Timer();
+		timer->Start();
 		if(autoSelected == autoNameCustom){
 			//Custom Auto goes here
 		} else {
 			//Default Auto goes here
-		}*/
+		}
 	}
 
 	void AutonomousPeriodic()
 	{
-		/*if(autoSelected == autoNameCustom){
+		if(autoSelected == autoNameCustom){
 			//Custom Auto goes here
+			if (timer->Get()<5)
+			{
+				myRobot->Drive(1.0,0.0);
+			}
+			else
+			{
+				myRobot->Drive(0.0,0.0);
+			}
 		} else {
 			//Default Auto goes here
-		}*/
+		}
 	}
 
 	void TeleopInit()
