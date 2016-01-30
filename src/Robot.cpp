@@ -102,8 +102,7 @@ private:
 		}
 	}
 	
-	void doNothing()
-	{
+	void doNothing(){
 		Drive->DriveSet(0.0,0.0);
 	}
 
