@@ -130,8 +130,7 @@ public:
                 /* Y axis for forward movement, and the current           */
                 /* calculated rotation rate (or joystick Z axis),         */
                 /* depending upon whether "rotate to angle" is active.    */
-                robotDrive.MecanumDrive_Cartesian(stick.GetX(), stick.GetY(),
-                                                  currentRotationRate ,ahrs->GetAngle());
+                robotDrive.ArcadeDrive(stick.GetY(), stick.GetTwist(), ahrs->GetAngle());
             } catch (std::exception ex ) {
                 std::string err_string = "Error communicating with Drive System:  ";
                 err_string += ex.what();
