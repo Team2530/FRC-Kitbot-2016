@@ -40,7 +40,7 @@ const static double kToleranceDegrees = 2.0f;
  */
 
 class Robot: public SampleRobot, public PIDOutput
-{
+{ 
 
     // Channels for the wheels
     const static int frontLeftChannel	= 2;
